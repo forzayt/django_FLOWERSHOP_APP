@@ -1,0 +1,86 @@
+{% extends 'adminhome.html' %}
+
+{% block content %}
+
+
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> DATA</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+
+   
+    <div class="container">
+        <h1></h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>User_id</th>
+                    <th>Mobile.no</th>
+                    <th>E-mail</th>
+                    <th>Address </th>
+                    <th>Status</th>
+                    <th>Username</th>
+                    <th>Password</th>
+                    <th>Aadhar</th>
+                    <th>Appeove</th>
+                    
+                
+                </tr>
+            </thead>
+            <tbody> {% for d in data %}
+                <tr>
+                    <td>{{d.fullname}}</td>
+                    <td>{{d.user_id}}</td>
+                <td>{{d.mobileno}}</td>
+                <td>{{d.mail}}</td>
+                <td>{{d.addr}}</td>   
+                <td>{{d.status}}</td>
+                <td>{{d.login.username}}</td>
+                <td>{{d.login.password}}</td>
+                <td>{{d.aadhar}}</td>
+                <td> <button class="btn">Approve</button></td>
+                 </tr>
+                 {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <!-- Bootstrap JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+ <style>
+    .table {
+    width: 100%;
+    margin-left: 9rem;
+    color: #212529;
+}
+.btn {
+ width: 100px;
+ height: 40px;
+ 
+ background: #fff;
+ border: none;
+ border-radius: 50px;
+ color: #000;
+ outline: none;
+ cursor: pointer;
+ transition: all 0.4s;
+}
+
+.btn:hover {
+ box-shadow: inset 0 0 0 4px #ef476f, 
+              inset 0 0 0 8px #ffd166, 
+              inset 0 0 0 12px #06d6a0,
+              inset 0 0 0 16px #118ab2;
+ background: #073b4c;
+ color: #fff;
+}
+ </style>
+    
+    {% endblock %} 

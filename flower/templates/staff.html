@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="icon" href="{% static 'assets/img/logo.png' %}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</head>
+<body>
+	<style>
+
+
+
+
+
+
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+    width: 567px;
+}
+	.wave-group {
+		position: relative;
+	  }
+	  
+	  .wave-group .input {
+		font-size: 16px;
+		padding: 10px 10px 10px 5px;
+		display: block;
+		width: 200px;
+		border: none;
+		border-bottom: 1px solid #515151;
+		background: transparent;
+	  }
+	  
+	  .wave-group .input:focus {
+		outline: none;
+	  }
+	  
+	  .wave-group .label {
+		color: #999;
+		font-size: 18px;
+		font-weight: normal;
+		position: absolute;
+		pointer-events: none;
+		left: 5px;
+		top: 10px;
+		display: flex;
+	  }
+	  
+	  .wave-group .label-char {
+		transition: 0.2s ease all;
+		transition-delay: calc(var(--index) * .05s);
+	  }
+	  
+	  .wave-group .input:focus ~ label .label-char,
+	  .wave-group .input:valid ~ label .label-char {
+		transform: translateY(-20px);
+		font-size: 14px;
+		color: #5264AE;
+	  }
+	  
+	  .wave-group .bar {
+		position: relative;
+		display: block;
+		width: 200px;
+	  }
+	  
+	  .wave-group .bar:before,.wave-group .bar:after {
+		content: '';
+		height: 2px;
+		width: 0;
+		bottom: 1px;
+		position: absolute;
+		background: #5264AE;
+		transition: 0.2s ease all;
+		-moz-transition: 0.2s ease all;
+		-webkit-transition: 0.2s ease all;
+	  }
+	  
+	  .wave-group .bar:before {
+		left: 50%;
+	  }
+	  
+	  .wave-group .bar:after {
+		right: 50%;
+	  }
+	  
+	  .wave-group .input:focus ~ .bar:before,
+	  .wave-group .input:focus ~ .bar:after {
+		width: 50%;
+	  }
+	  
+
+
+
+
+
+
+
+	  
+	
+	  </style>
+    <section class="h-100 bg-dark">
+        <div class="container py-5 h-100">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col">
+              <div class="card card-registration my-4">
+                <div class="row g-0">
+                  <div class="col-xl-6 d-none d-xl-block">
+                    <img src="https://i.pinimg.com/736x/84/08/9b/84089b3c0c943c3df59dab97c6b2a5fb.jpg"
+                      alt="Sample photo" class="img-fluid"
+                      style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;" />
+                  </div>
+                  <div class="col-xl-6">
+                    <div class="card-body p-md-5 text-black">
+                      <h3 class="mb-5 text-uppercase">Staff Registration form                     
+                        <label class="switch">                         
+                          <span class="slider round"></span>
+                        </label></h3>
+                        <form action="{% url 'staffreg' %}" method="post"> 
+                          {% csrf_token %}
+                      <div class="row">
+                        <div class="col-md-6 mb-4">
+                          
+
+
+
+
+
+						  <div class="wave-group">
+							<input required="" type="text" class="input" name="fullname"/> 
+							<span class="bar"></span>
+							<label class="label">
+							  <span class="label-char" style="--index: 0">N</span>
+							  <span class="label-char" style="--index: 1">a</span>
+							  <span class="label-char" style="--index: 2">m</span>
+							  <span class="label-char" style="--index: 3">e</span>
+							</label>
+						  </div>
+
+
+
+
+
+
+                        </div>
+                        <div class="col-md-6 mb-4">
+                          <div class="form-outline">
+                           
+                          </div>
+                        </div>
+                      </div>
+      
+                      <div class="row">
+                        <div class="col-md-6 mb-4">
+                          <div class="form-outline">
+                            
+							<div class="wave-group">
+								<input required="" type="text" class="input" name="address"/> 
+								<span class="bar"></span>
+								<label class="label">
+								  <span class="label-char" style="--index: 0">A</span>
+								  <span class="label-char" style="--index: 1">d</span>
+								  <span class="label-char" style="--index: 2">d</span>
+								  <span class="label-char" style="--index: 3">r</span>
+								  <span class="label-char" style="--index: 3">e</span>
+								  <span class="label-char" style="--index: 3">s</span>
+								  <span class="label-char" style="--index: 3">s</span>
+								</label>
+							  </div>
+	
+  
+                        </div>
+                
+                          <div class="form-outline">
+
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-outline mb-4">
+                      <div class="wave-group">
+						<input required="" type="text" class="input" name="mobileno"/> 
+						<span class="bar"></span>
+						<label class="label">
+						  <span class="label-char" style="--index: 0">M</span>
+						  <span class="label-char" style="--index: 1">o</span>
+						  <span class="label-char" style="--index: 2">b</span>
+						  <span class="label-char" style="--index: 3">i</span>
+						  <span class="label-char" style="--index: 3">l</span>
+						  <span class="label-char" style="--index: 3">e</span>
+						
+						</label>
+					  </div><br>
+                      
+                      <div class="form-outline mb-4">
+                        <div class="wave-group">
+							<input required="" type="text" class="input" name="username"/> 
+							<span class="bar"></span>
+							<label class="label">
+							  <span class="label-char" style="--index: 0">U</span>
+							  <span class="label-char" style="--index: 1">s</span>
+							  <span class="label-char" style="--index: 2">e</span>
+							  <span class="label-char" style="--index: 3">r</span>
+							  <span class="label-char" style="--index: 3">n</span>
+							  <span class="label-char" style="--index: 3">a</span>
+							  <span class="label-char" style="--index: 3">m</span>
+							  <span class="label-char" style="--index: 3">e</span>
+							</label>
+						  </div>
+
+                      </div>
+
+                      
+                      <div class="form-outline mb-4">
+                        <div class="wave-group">
+							<input required="" type="password" class="input" name="password"/> 
+							<span class="bar"></span>
+							<label class="label">
+							  <span class="label-char" style="--index: 0">P</span>
+							  <span class="label-char" style="--index: 1">a</span>
+							  <span class="label-char" style="--index: 2">s</span>
+							  <span class="label-char" style="--index: 3">s</span>
+							  <span class="label-char" style="--index: 3">w</span>
+							  <span class="label-char" style="--index: 3">o</span>
+							  <span class="label-char" style="--index: 3">r</span>
+							  <span class="label-char" style="--index: 3">d</span>
+							</label>
+                      </div>
+      <br>
+					  
+      
+                      <div class="form-outline mb-4">
+                        <div class="wave-group">
+							<input required="" type="text" class="input" name="mail"/> 
+							<span class="bar"></span>
+							<label class="label">
+							  <span class="label-char" style="--index: 0">E</span>
+							  <span class="label-char" style="--index: 1">-</span>
+							  <span class="label-char" style="--index: 2">M</span>
+							  <span class="label-char" style="--index: 3">a</span>
+							  <span class="label-char" style="--index: 3">i</span>
+							  <span class="label-char" style="--index: 3">l</span>
+							  
+							</label>
+                      </div>
+
+					  <br>
+                      <div class="wave-group">
+                        <input required="" type="text" class="input" name="aadhar"/> 
+                        <span class="bar"></span>
+                        <label class="label">
+                          <span class="label-char" style="--index: 0">A</span>
+                          <span class="label-char" style="--index: 1">a</span>
+                          <span class="label-char" style="--index: 2">d</span>
+                          <span class="label-char" style="--index: 3">h</span>
+                          <span class="label-char" style="--index: 3">a</span>
+                          <span class="label-char" style="--index: 3">r</span>
+                          <span class="label-char" style="--index: 3">-</span>
+                          <span class="label-char" style="--index: 3">n</span>
+                          <span class="label-char" style="--index: 3">o</span>
+                        </label>
+                  </div>
+
+					
+								
+							</form>
+						</div>
+						
+					  
+                     
+                        
+                        
+                      </div><br><br>
+					  <button type="submit" class="btn btn-warning btn-lg ms-2">Submit form</button>
+					  
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </form>
+</body>
+</html>
