@@ -1,6 +1,6 @@
-# Vedhik_Healthcare
+# FLOSUN
 
-# Medical Shop Static Website
+# Flower Shop Static Website
 
 
 
