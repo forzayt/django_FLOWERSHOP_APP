@@ -1,10 +1,10 @@
 # FLOSUN
 
-# Flower Shop Static Website
+# Flower Shop Website
 
 
 
-Welcome to the Medical Shop Static Website repository! This repository contains the source code for a static website developed for a medical shop. The website provides essential information about the medical shop, its products, services, and contact details. It is built using HTML, CSS, and JavaScript.
+Welcome to the Flower Shop  Website repository! This repository contains the source code for a  website developed for a flower shop. The website provides essential information about the medical shop, its products, services, and contact details. It is built using HTML, CSS,JavaScript,bootstrap,django,Mysql,Python,.
 
 ## Table of Contents
 
@@ -18,26 +18,31 @@ Welcome to the Medical Shop Static Website repository! This repository contains 
 
 ## Introduction
 
-This website serves as an online presence for a local medical shop, helping it reach a broader audience and making it easier for customers to access important information. The website is designed to be user-friendly and responsive, providing a seamless browsing experience on various devices.
+This website serves as an online presence for a local flower shop, helping it reach a broader audience and making it easier for customers to access important information. The website is designed to be user-friendly and responsive, providing a seamless browsing experience on various devices.
 
 ## Features
 
-- Browse through a wide range of medical products conveniently.
-- Learn about the services offered by the medical shop.
+- Browse through a wide range of flowers  conveniently.
+- Learn about the services offered by the flower shop.
 - Contact the shop for inquiries and prescriptions.
 - Responsive design for optimal viewing on different screen sizes.
 - Smooth navigation and interactive user interface.
 
 ## Demo
 
-You can access the live demo of the website at [here](https://vishnu1100.github.io/Vedhik_Healthcare/index.html).
+You can access the live demo of the website at [here](https://vishnu1100.github.io/django_FLOWERSHOP_APP/index.html).
 
 
 ## Technologies Used
 
-- HTML5: Provides the structure and layout for the music player.
-- CSS3: Handles the styling and visual presentation of the player.
-- JavaScript: Implements the interactive features and functionality of the player.
+- HTML5
+- CSS3
+- JavaScript 
+- Python 3.11
+- Django
+- Mysql
+- Xampp server (for Local installation)
+- Bootstrap
 
 
 
@@ -54,6 +59,19 @@ For this project, we used the following Google Fonts:
 
 ![Screenshot 1](/screenshots/1.png)
 
+![Screenshot 1](/screenshots/2.png)
+
+
+
+![Screenshot 1](/screenshots/3.png)
+
+
+
+![Screenshot 1](/screenshots/4.png)
+
+
+
+
 ## Installation
 
 To run this website locally, follow these steps:
@@ -68,7 +86,7 @@ To run this website locally, follow these steps:
 
 ## Usage
 
-The website is designed to be easy to use and navigate. You can browse through the different pages to explore the medical shop's products and services. The website is responsive, so feel free to access it from your desktop, tablet, or smartphone.
+The website is designed to be easy to use and navigate. You can browse through the different pages to explore the flower shop's products and services. The website is responsive, so feel free to access it from your desktop, tablet, or smartphone.
 
 ## Contributing
 
