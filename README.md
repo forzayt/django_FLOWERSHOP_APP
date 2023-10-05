@@ -30,7 +30,7 @@ This website serves as an online presence for a local flower shop, helping it re
 
 ## Demo
 
-You can access the live demo of the website at [here]([https://vishnu1100.github.io/django_FLOWERSHOP_APP/index.html](https://vishnu1100.github.io/django_FLOWERSHOP_APP/)).
+You can access the live demo of the website at [here](https://vishnu1100.github.io/django_FLOWERSHOP_APP/)
 
 
 ## Technologies Used
