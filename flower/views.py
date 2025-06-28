@@ -66,27 +66,85 @@ def dashboard(request):
     }
     return render(request, "dashboard.html", context)
 
-def adminlogin(request):
-    t1=request.POST.get("username")
-    t2=request.POST.get("password")
-    dlog=log.objects.filter(username=t1,password=t2).count()
-
-    # _______---loop for different landing Pages--_____
-
-    if dlog==1:
-        logd=log.objects.get(username=t1,password=t2)
-        if  logd.role=="admin":
-            request.session["logid"]=logd.logid
-            request.session["role"]=logd.role
-            request.session["username"]=t1
-            response=redirect('/adminhome')
-            return response
-        
-    else:
-        msg="invalid email or password"
-        return render(request,"login.html",{"msg":msg})
+def staff_dashboard(request):
+    """Staff-specific dashboard"""
+    # Check if user is logged in and is staff
+    if 'logid' not in request.session or 'role' not in request.session:
+        return redirect('login')
     
-   
+    if request.session['role'] != 'staff':
+        return redirect('login')
+    
+    try:
+        # Get staff information
+        logd = log.objects.get(logid=request.session['logid'])
+        staff_obj = stafff.objects.get(login=logd)
+        
+        # Get staff-specific data
+        total_products = product.objects.count()
+        recent_products = product.objects.order_by('-id')[:5]
+        
+        context = {
+            'staff': staff_obj,
+            'total_products': total_products,
+            'recent_products': recent_products,
+        }
+        return render(request, "staff_dashboard.html", context)
+        
+    except (log.DoesNotExist, stafff.DoesNotExist):
+        return redirect('login')
+
+def adminlogin(request):
+    if request.method == 'POST':
+        t1 = request.POST.get("username")
+        t2 = request.POST.get("password")
+        
+        try:
+            logd = log.objects.get(username=t1, password=t2)
+            
+            # Set session data
+            request.session["logid"] = logd.logid
+            request.session["role"] = logd.role
+            request.session["username"] = t1
+            
+            # Redirect based on role
+            if logd.role == "admin":
+                return redirect('/adminhome')
+            elif logd.role == "staff":
+                # Check if staff is approved
+                try:
+                    staff_obj = stafff.objects.get(login=logd)
+                    if staff_obj.status == "approved":
+                        return redirect('/staff-dashboard')  # Staff goes to staff dashboard
+                    else:
+                        msg = "Your staff account is pending approval. Please contact administrator."
+                        return render(request, "login.html", {"msg": msg})
+                except stafff.DoesNotExist:
+                    msg = "Staff profile not found. Please contact administrator."
+                    return render(request, "login.html", {"msg": msg})
+            elif logd.role == "customer":
+                # Check if customer is approved
+                try:
+                    user_obj = usr.objects.get(login=logd)
+                    if user_obj.status == "approved":
+                        return redirect('/')  # Customer goes to home page
+                    else:
+                        msg = "Your account is pending approval. Please contact administrator."
+                        return render(request, "login.html", {"msg": msg})
+                except usr.DoesNotExist:
+                    msg = "User profile not found. Please contact administrator."
+                    return render(request, "login.html", {"msg": msg})
+            else:
+                msg = "Invalid user role. Please contact administrator."
+                return render(request, "login.html", {"msg": msg})
+                
+        except log.DoesNotExist:
+            msg = "Invalid username or password"
+            return render(request, "login.html", {"msg": msg})
+    
+    # If not POST request, show login page
+    return render(request, "login.html")
+    
    # _______---Customer registraion function--_____
 
 def customerreg(request):
@@ -147,4 +205,10 @@ def productdata(request):
 def pdts(request):
      data=product.objects.all()
      return render(request,"productdata.html",{"data":data})
+
+def logout_view(request):
+    """Handle user logout"""
+    # Clear session data
+    request.session.flush()
+    return redirect('login')
 
