@@ -1,4 +1,6 @@
 from django.shortcuts import render,redirect
+from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 from .models import login as log
 from .models import user as usr
 from .models import Products as product
@@ -35,6 +37,34 @@ def data(request):
 def addproduct(request):
     return render(request,"addproduct.html")
 
+@staff_member_required
+def dashboard(request):
+    """Enhanced dashboard with statistics and admin links"""
+    # Get statistics
+    total_users = usr.objects.count()
+    total_staff = stafff.objects.count()
+    total_products = product.objects.count()
+    total_logins = log.objects.count()
+    
+    # Get pending approvals
+    pending_users = usr.objects.filter(status='waiting').count()
+    pending_staff = stafff.objects.filter(status='waiting').count()
+    
+    # Get recent data
+    recent_users = usr.objects.order_by('-user_id')[:5]
+    recent_products = product.objects.order_by('-id')[:5]
+    
+    context = {
+        'total_users': total_users,
+        'total_staff': total_staff,
+        'total_products': total_products,
+        'total_logins': total_logins,
+        'pending_users': pending_users,
+        'pending_staff': pending_staff,
+        'recent_users': recent_users,
+        'recent_products': recent_products,
+    }
+    return render(request, "dashboard.html", context)
 
 def adminlogin(request):
     t1=request.POST.get("username")
@@ -42,7 +72,6 @@ def adminlogin(request):
     dlog=log.objects.filter(username=t1,password=t2).count()
 
     # _______---loop for different landing Pages--_____
-
 
     if dlog==1:
         logd=log.objects.get(username=t1,password=t2)
@@ -60,7 +89,6 @@ def adminlogin(request):
    
    # _______---Customer registraion function--_____
 
-
 def customerreg(request):
      fullname=request.POST["fullname"]
      address=request.POST["address"]
@@ -77,8 +105,6 @@ def customerreg(request):
 
 # _______---Staff registraion function--_____
 
-
-
 def staffreg(request):
      fullname=request.POST["fullname"]
      address=request.POST["address"]
@@ -91,23 +117,18 @@ def staffreg(request):
      log.objects.create(username=username,password=password,role="staff")
      data=log.objects.last()
      stafff.objects.create(login=data,fullname=fullname,aadhar=aadhar,addr=address,mail=mail,mobileno=mobileno,status="waiting")
-     response=redirect("login")
+     response=redirect("adminhome")
      return response 
 
 def data(request):
      data=usr.objects.all()
      return render(request,"data.html",{"data":data})
 
-
 def staffdata(request):
      data=stafff.objects.all()
      return render(request,"staffdata.html",{"data":data})
 
-
-
 # _______---Adding Products to DB function--_____
-
-
 
 def addproducts(request):
      pn=request.POST["pn"]
@@ -119,11 +140,9 @@ def addproducts(request):
      response=redirect("adminhome")
      return response 
 
-
 def productdata(request):
      data=product.objects.all()
      return render(request,"productdata.html",{"data":data})
-
 
 def pdts(request):
      data=product.objects.all()

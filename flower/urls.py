@@ -17,6 +17,7 @@ urlpatterns=[
     path("cart",views.cart,name="cart"),
     path("adminlogin",views.adminlogin,name="adminlogin"),
     path("adminhome",views.adminhome,name="adminhome"),
+    path("dashboard",views.dashboard,name="dashboard"),
     path("customerreg",views.customerreg,name="customerreg"),
     path("staffreg",views.staffreg,name="staffreg"),
     path("data",views.data,name="data"),
