@@ -376,7 +376,7 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## 👨‍💻 Author
 
-- **Vishnu Santhosh** - [@vishnu1100](https://github.com/vishnu1100)
+- **Vishnu Santhosh** - [@forzayt](https://github.com/forzayt)
 
 ## 🙏 Acknowledgments
 
