@@ -20,6 +20,7 @@ urlpatterns=[
     path("adminhome",views.adminhome,name="adminhome"),
     path("dashboard",views.dashboard,name="dashboard"),
     path("staff-dashboard",views.staff_dashboard,name="staff_dashboard"),
+    path("customer-dashboard",views.customer_dashboard,name="customer_dashboard"),
     path("customerreg",views.customerreg,name="customerreg"),
     path("staffreg",views.staffreg,name="staffreg"),
     path("data",views.data,name="data"),

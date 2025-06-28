@@ -127,7 +127,7 @@ def adminlogin(request):
                 try:
                     user_obj = usr.objects.get(login=logd)
                     if user_obj.status == "approved":
-                        return redirect('/')  # Customer goes to home page
+                        return redirect('/customer-dashboard')  # Customer goes to customer dashboard
                     else:
                         msg = "Your account is pending approval. Please contact administrator."
                         return render(request, "login.html", {"msg": msg})
@@ -205,6 +205,34 @@ def productdata(request):
 def pdts(request):
      data=product.objects.all()
      return render(request,"productdata.html",{"data":data})
+
+def customer_dashboard(request):
+    """Customer-specific dashboard"""
+    # Check if user is logged in and is customer
+    if 'logid' not in request.session or 'role' not in request.session:
+        return redirect('login')
+    
+    if request.session['role'] != 'customer':
+        return redirect('login')
+    
+    try:
+        # Get customer information
+        logd = log.objects.get(logid=request.session['logid'])
+        user_obj = usr.objects.get(login=logd)
+        
+        # Get customer-specific data
+        total_products = product.objects.count()
+        recent_products = product.objects.order_by('-id')[:6]
+        
+        context = {
+            'customer': user_obj,
+            'total_products': total_products,
+            'recent_products': recent_products,
+        }
+        return render(request, "customer_dashboard.html", context)
+        
+    except (log.DoesNotExist, usr.DoesNotExist):
+        return redirect('login')
 
 def logout_view(request):
     """Handle user logout"""
